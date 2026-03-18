@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import { School, Mail, Shield, ArrowLeft, Key } from 'lucide-react';
+import { Mail, Shield, ArrowLeft, Key } from 'lucide-react';
 
 const PasswordRecovery: React.FC = () => {
   const [email, setEmail] = useState('');

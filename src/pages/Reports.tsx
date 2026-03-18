@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
-import { FileText, Download, Filter, X, Users, Layers, BarChart3, Home } from 'lucide-react';
+import { FileText, Download, Filter, X, Users, Layers, BarChart3 } from 'lucide-react';
 import { getGrades, type Grade } from '../services/grades.service';
 import reportsService, { type ReportSection } from '../services/reports.service';
 

@@ -12,8 +12,6 @@ import {
   Award,
   BookOpen,
   Target,
-  Database,
-  Server
 } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
@@ -46,7 +44,7 @@ const Dashboard: React.FC = () => {
       timestamp: string;
     }>
   });
-  const [gradeStats, setGradeStats] = useState<Array<{
+  const [, setGradeStats] = useState<Array<{
     id: number;
     name: string;
     level: number;
@@ -75,8 +73,8 @@ const Dashboard: React.FC = () => {
         
         // Fetch all dashboard data in parallel
         const [dashboardStats, gradeStatsData, systemStatusData] = await Promise.all([
-          dashboardService.getDashboardStats(token),
-          dashboardService.getGradeStats(token),
+          dashboardService.getDashboardStats(),
+          dashboardService.getGradeStats(),
           dashboardService.getSystemStatus(token)
         ]);
         
@@ -175,15 +173,6 @@ const Dashboard: React.FC = () => {
     return colors[color as keyof typeof colors] || 'bg-gray-500';
   };
 
-  const getLightColorClasses = (color: string) => {
-    const colors = {
-      blue: 'bg-blue-100 text-blue-800',
-      green: 'bg-green-100 text-green-800',
-      purple: 'bg-purple-100 text-purple-800',
-      orange: 'bg-orange-100 text-orange-800'
-    };
-    return colors[color as keyof typeof colors] || 'bg-gray-100 text-gray-800';
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex">

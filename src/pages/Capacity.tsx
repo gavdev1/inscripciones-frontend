@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import dashboardService from '../services/dashboard.service';
 import { 
@@ -11,7 +10,6 @@ import {
   CheckCircle,
   BarChart3,
   PieChart,
-  Calendar,
   Filter,
   Download
 } from 'lucide-react';
@@ -36,7 +34,6 @@ interface GradeCapacity {
 
 const Capacity: React.FC = () => {
   const { user, token } = useAuth();
-  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [gradeStats, setGradeStats] = useState<GradeCapacity[]>([]);
   const [selectedGrade, setSelectedGrade] = useState<number | null>(null);
@@ -51,10 +48,10 @@ const Capacity: React.FC = () => {
         setIsLoading(true);
         
         // Fetch grade stats
-        const gradeStatsData = await dashboardService.getGradeStats(token);
+        const gradeStatsData = await dashboardService.getGradeStats();
         
         // Fetch dashboard stats to get sections by grade
-        const dashboardStats = await dashboardService.getDashboardStats(token);
+        const dashboardStats = await dashboardService.getDashboardStats();
         
         // Combine data
         const combinedData = gradeStatsData.map(grade => {

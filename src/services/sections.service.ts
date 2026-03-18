@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/sections';
+const API_URL = 'https://inscripciones-backend-z2po.onrender.com/sections';
 
 export interface Section {
   id?: number;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://inscripciones-backend-z2po.onrender.com:3000';
 
 export interface DashboardStats {
   totalStudents: number;
@@ -41,7 +41,7 @@ export interface GradeStats {
 }
 
 const dashboardService = {
-  getDashboardStats: async (token: string): Promise<DashboardStats> => {
+  getDashboardStats: async (): Promise<DashboardStats> => {
     try {
       const response = await axios.get(`${API_URL}/dashboard/stats-test`, {
         timeout: 10000
@@ -62,7 +62,7 @@ const dashboardService = {
     }
   },
 
-  getGradeStats: async (token: string): Promise<GradeStats[]> => {
+  getGradeStats: async (): Promise<GradeStats[]> => {
     try {
       const response = await axios.get(`${API_URL}/dashboard/grade-stats-test`, {
         timeout: 10000

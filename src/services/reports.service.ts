@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/reports';
+const API_URL = 'https://inscripciones-backend-z2po.onrender.com/reports';
 
 export interface ReportSection {
   id: number;

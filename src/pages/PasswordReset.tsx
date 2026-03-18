@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { School, Key, Lock, ArrowLeft, CheckCircle } from 'lucide-react';
+import {  Key, Lock, ArrowLeft, CheckCircle } from 'lucide-react';
 
 const PasswordReset: React.FC = () => {
   const [searchParams] = useSearchParams();

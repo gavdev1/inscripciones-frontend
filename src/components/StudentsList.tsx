@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import studentsService, { type Student } from '../services/students.service';
-import gradesService, { type Grade } from '../services/grades.service';
-import sectionsService, { type Section } from '../services/sections.service';
 import EditStudent from './EditStudent';
 
 const StudentsList: React.FC = () => {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/students';
+const API_URL = 'https://inscripciones-backend-z2po.onrender.com/students';
 
 export interface Grade {
   id: number;

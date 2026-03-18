@@ -5,10 +5,9 @@ import Navigation from '../components/Navigation';
 import CreateStudent from '../components/CreateStudent';
 import StudentsList from '../components/StudentsList';
 import StudentSearch from '../components/StudentSearch';
-import studentsService from '../services/students.service';
 
 const Students: React.FC = () => {
-  const { user, token } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [refreshKey, setRefreshKey] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

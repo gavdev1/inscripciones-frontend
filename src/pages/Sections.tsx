@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import CreateSection from '../components/CreateSection';
 import SectionsList from '../components/SectionsList';
-import { Layers, Users, Home, BarChart3 } from 'lucide-react';
+import { Layers, Users, BarChart3 } from 'lucide-react';
 
 const Sections: React.FC = () => {
   const { user } = useAuth();
