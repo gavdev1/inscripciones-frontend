@@ -75,18 +75,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const recoverPassword = async (email: string, code?: string) => {
+  const recoverPassword = async (email: string) => {
     try {
-      await authService.recoverPassword({ email, code });
+      await authService.recoverPassword(email);
     } catch (error) {
       console.error('Password recovery error:', error);
       throw error;
     }
   };
 
-  const resetPassword = async (email: string, token: string, password: string) => {
+  const resetPassword = async (token: string, password: string) => {
     try {
-      await authService.resetPassword({ email, token, password });
+      await authService.resetPassword(token, password);
     } catch (error) {
       console.error('Password reset error:', error);
       throw error;

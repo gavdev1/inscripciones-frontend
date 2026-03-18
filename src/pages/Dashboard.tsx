@@ -75,7 +75,7 @@ const Dashboard: React.FC = () => {
         const [dashboardStats, gradeStatsData, systemStatusData] = await Promise.all([
           dashboardService.getDashboardStats(),
           dashboardService.getGradeStats(),
-          dashboardService.getSystemStatus(token)
+          dashboardService.getSystemStatus()
         ]);
         
         setStats(dashboardStats);

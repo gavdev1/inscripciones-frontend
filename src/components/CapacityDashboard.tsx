@@ -11,7 +11,7 @@ const CapacityDashboard: React.FC = () => {
   const fetchCapacityData = async () => {
     try {
       setIsLoading(true);
-      const data = await studentsService.getCapacity(token!);
+      const data = await studentsService.getCapacity();
       setCapacityData(data);
       setError(null);
     } catch (error: any) {

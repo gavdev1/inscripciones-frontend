@@ -45,7 +45,7 @@ const SectionsList: React.FC = () => {
     
     setIsDeleting(true);
     try {
-      await sectionsService.delete(section.id!, token);
+      await sectionsService.delete(section.id!);
       setSections(sections.filter(s => s.id !== section.id));
       setDeleteConfirm(null);
     } catch (error: any) {

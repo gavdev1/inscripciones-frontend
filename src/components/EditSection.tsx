@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import sectionsService, { type Section, type UpdateSectionData } from '../services/sections.service';
 
 interface EditSectionProps {
@@ -9,7 +8,6 @@ interface EditSectionProps {
 }
 
 const EditSection: React.FC<EditSectionProps> = ({ section, onSectionUpdated, onCancel }) => {
-  const { token } = useAuth();
   const [formData, setFormData] = useState<UpdateSectionData>({
     name: section.name
   });
@@ -43,7 +41,7 @@ const EditSection: React.FC<EditSectionProps> = ({ section, onSectionUpdated, on
     setSuccess(null);
 
     try {
-      await sectionsService.update(section.id!, formData, token!);
+      await sectionsService.update(section.id!, formData);
       setSuccess('Sección actualizada exitosamente');
       
       if (onSectionUpdated) {

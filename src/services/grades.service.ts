@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = 'https://inscripciones-backend-z2po.onrender.com/grades';
+import api from '../config/axios';
 
 export interface Grade {
   id?: number;
@@ -22,7 +20,7 @@ export interface UpdateGradeData {
 
 const gradesService = {
   getAll: async (token: string): Promise<Grade[]> => {
-    const response = await axios.get(`${API_URL}`, {
+    const response = await api.get('/grades', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -31,7 +29,7 @@ const gradesService = {
   },
 
   getById: async (id: number, token: string): Promise<Grade> => {
-    const response = await axios.get(`${API_URL}/${id}`, {
+    const response = await api.get(`/grades/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -40,7 +38,7 @@ const gradesService = {
   },
 
   create: async (data: CreateGradeData, token: string): Promise<Grade> => {
-    const response = await axios.post(`${API_URL}`, data, {
+    const response = await api.post('/grades', data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -48,30 +46,18 @@ const gradesService = {
     return response.data;
   },
 
-  update: async (id: number, data: UpdateGradeData, token: string): Promise<any> => {
-    const response = await axios.put(`${API_URL}/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+  update: async (id: number, data: UpdateGradeData): Promise<any> => {
+    const response = await api.put(`/grades/${id}`, data);
     return response.data;
   },
 
-  delete: async (id: number, token: string): Promise<any> => {
-    const response = await axios.delete(`${API_URL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+  delete: async (id: number): Promise<any> => {
+    const response = await api.delete(`/grades/${id}`);
     return response.data;
   },
 
-  initialize: async (token: string): Promise<any> => {
-    const response = await axios.post(`${API_URL}/initialize`, {}, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+  initialize: async (): Promise<any> => {
+    const response = await api.post('/grades/initialize', {});
     return response.data;
   }
 };

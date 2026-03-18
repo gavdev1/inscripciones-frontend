@@ -33,7 +33,7 @@ const CreateStudent: React.FC<CreateStudentProps> = ({ onStudentCreated, onCapac
         const [gradesData, sectionsData, capacityInfo] = await Promise.all([
           gradesService.getAll(token!),
           sectionsService.getAll(token!),
-          studentsService.getCapacity(token!)
+          studentsService.getCapacity()
         ]);
         setGrades(gradesData);
         setSections(sectionsData);
@@ -110,7 +110,7 @@ const CreateStudent: React.FC<CreateStudentProps> = ({ onStudentCreated, onCapac
 
     try {
       console.log('Sending student creation request...');
-      await studentsService.create(formData, token!);
+      await studentsService.create(formData);
       console.log('Student created successfully');
       setSuccess('Alumno creado exitosamente');
       setFormData({
@@ -123,7 +123,7 @@ const CreateStudent: React.FC<CreateStudentProps> = ({ onStudentCreated, onCapac
       });
       
       // Refresh capacity data to show updated counts
-      const updatedCapacity = await studentsService.getCapacity(token!);
+      const updatedCapacity = await studentsService.getCapacity();
       setCapacityData(updatedCapacity);
       
       if (onStudentCreated) {

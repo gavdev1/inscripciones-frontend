@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = 'https://inscripciones-backend-z2po.onrender.com/auth';
+import api from '../config/axios';
 
 export interface LoginData {
   email: string;
@@ -38,17 +36,17 @@ export interface AuthResponse {
 
 const authService = {
   login: async (data: LoginData): Promise<AuthResponse> => {
-    const response = await axios.post(`${API_URL}/login`, data);
+    const response = await api.post('/auth/login', data);
     return response.data;
   },
 
-  register: async (data: RegisterData): Promise<any> => {
-    const response = await axios.post(`${API_URL}/register`, data);
+  register: async (data: RegisterData): Promise<AuthResponse> => {
+    const response = await api.post('/auth/register', data);
     return response.data;
   },
 
   getProfile: async (token: string): Promise<any> => {
-    const response = await axios.get(`${API_URL}/profile`, {
+    const response = await api.get('/auth/profile', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -56,13 +54,16 @@ const authService = {
     return response.data;
   },
 
-  recoverPassword: async (data: RecoveryData): Promise<any> => {
-    const response = await axios.post(`${API_URL}/get-token-password`, data);
-    return response.data;
+  recoverPassword: async (email: string): Promise<void> => {
+    await api.post('/auth/recover-password', { email });
   },
 
-  resetPassword: async (data: ResetPasswordData): Promise<any> => {
-    const response = await axios.post(`${API_URL}/reset-password`, data);
+  resetPassword: async (token: string, newPassword: string): Promise<void> => {
+    await api.post('/auth/reset-password', { token, newPassword });
+  },
+
+  verifyToken: async (token: string): Promise<{ valid: boolean }> => {
+    const response = await api.post('/auth/verify-token', { token });
     return response.data;
   }
 };

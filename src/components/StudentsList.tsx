@@ -15,7 +15,7 @@ const StudentsList: React.FC = () => {
   const fetchStudents = async () => {
     try {
       setIsLoading(true);
-      const data = await studentsService.getAll(token!);
+      const data = await studentsService.getAll();
       setStudents(data);
       setError(null);
     } catch (error: any) {
@@ -49,7 +49,7 @@ const StudentsList: React.FC = () => {
     
     setIsDeleting(true);
     try {
-      await studentsService.delete(student.id!, token);
+      await studentsService.delete(student.id!);
       setStudents(students.filter(s => s.id !== student.id));
       setDeleteConfirm(null);
     } catch (error: any) {

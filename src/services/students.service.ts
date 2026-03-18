@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = 'https://inscripciones-backend-z2po.onrender.com/students';
+import api from '../config/axios';
 
 export interface Grade {
   id: number;
@@ -58,12 +56,9 @@ export interface CapacityInfo {
 }
 
 const studentsService = {
-  getAll: async (token: string): Promise<Student[]> => {
+  getAll: async (): Promise<Student[]> => {
     try {
-      const response = await axios.get(`${API_URL}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.get('/students', {
         timeout: 10000
       });
       return response.data;
@@ -81,13 +76,10 @@ const studentsService = {
     }
   },
 
-  getById: async (id: number, token: string): Promise<Student> => {
+  getById: async (id: number): Promise<Student> => {
     try {
       console.log('Fetching student with ID:', id);
-      const response = await axios.get(`${API_URL}/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.get(`/students/${id}`, {
         timeout: 10000
       });
       console.log('Student data received:', response.data);
@@ -108,12 +100,9 @@ const studentsService = {
     }
   },
 
-  create: async (data: CreateStudentData, token: string): Promise<Student> => {
+  create: async (data: CreateStudentData): Promise<Student> => {
     try {
-      const response = await axios.post(`${API_URL}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.post('/students', data, {
         timeout: 10000
       });
       return response.data;
@@ -131,12 +120,9 @@ const studentsService = {
     }
   },
 
-  update: async (id: number, data: UpdateStudentData, token: string): Promise<any> => {
+  update: async (id: number, data: UpdateStudentData): Promise<any> => {
     try {
-      const response = await axios.put(`${API_URL}/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.put(`/students/${id}`, data, {
         timeout: 10000
       });
       return response.data;
@@ -154,12 +140,9 @@ const studentsService = {
     }
   },
 
-  delete: async (id: number, token: string): Promise<any> => {
+  delete: async (id: number): Promise<any> => {
     try {
-      const response = await axios.delete(`${API_URL}/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.delete(`/students/${id}`, {
         timeout: 10000
       });
       return response.data;
@@ -177,12 +160,9 @@ const studentsService = {
     }
   },
 
-  getCapacity: async (token: string): Promise<CapacityInfo[]> => {
+  getCapacity: async (): Promise<CapacityInfo[]> => {
     try {
-      const response = await axios.get(`${API_URL}/capacity`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.get('/students/capacity', {
         timeout: 10000
       });
       return response.data;
@@ -198,13 +178,10 @@ const studentsService = {
     }
   },
 
-  search: async (query: string, token: string): Promise<Student[]> => {
+  search: async (query: string): Promise<Student[]> => {
     try {
-      const response = await axios.get(`${API_URL}/search`, {
+      const response = await api.get('/students/search', {
         params: { query },
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
         timeout: 10000
       });
       return response.data;
@@ -224,12 +201,9 @@ const studentsService = {
     }
   },
 
-  deleteAll: async (token: string): Promise<{ message: string; deletedCount: number }> => {
+  deleteAll: async (): Promise<{ message: string; deletedCount: number }> => {
     try {
-      const response = await axios.delete('http://localhost:3000/reports/students/delete-all', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await api.delete('/reports/students/delete-all', {
         timeout: 10000
       });
       return response.data;

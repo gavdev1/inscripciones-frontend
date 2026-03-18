@@ -80,7 +80,7 @@ const EditStudent: React.FC<EditStudentProps> = ({ student, onStudentUpdated, on
     setSuccess(null);
 
     try {
-      await studentsService.update(student.id!, formData, token!);
+      await studentsService.update(student.id!, formData);
       setSuccess('Alumno actualizado exitosamente');
       
       if (onStudentUpdated) {

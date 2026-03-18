@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = 'https://inscripciones-backend-z2po.onrender.com/reports';
+import api from '../config/axios';
 
 export interface ReportSection {
   id: number;
@@ -9,12 +7,7 @@ export interface ReportSection {
 
 const reportsService = {
   getSectionsByGrade: async (gradeId: number): Promise<ReportSection[]> => {
-    const token = localStorage.getItem('token') || '';
-    const response = await axios.get(`${API_URL}/sections/${gradeId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const response = await api.get(`/reports/sections/${gradeId}`);
     return response.data;
   }
 };

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import studentsService, { type Student } from '../services/students.service';
 
 interface StudentSearchProps {
@@ -7,7 +6,6 @@ interface StudentSearchProps {
 }
 
 const StudentSearch: React.FC<StudentSearchProps> = ({ onStudentSelect }) => {
-  const { token } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Student[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -25,7 +23,7 @@ const StudentSearch: React.FC<StudentSearchProps> = ({ onStudentSelect }) => {
     setHasSearched(true);
 
     try {
-      const results = await studentsService.search(searchQuery.trim(), token!);
+      const results = await studentsService.search(searchQuery.trim());
       setSearchResults(results);
     } catch (error: any) {
       console.error('Error searching students:', error);
