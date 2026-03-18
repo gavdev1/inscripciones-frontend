@@ -58,6 +58,11 @@ const authService = {
     await api.post('/auth/recover-password', { email });
   },
 
+  getTokenPassword: async (email: string, code: string): Promise<{ message: string }> => {
+    const response = await api.post('/auth/get-token-password', { email, code });
+    return response.data;
+  },
+
   resetPassword: async (token: string, newPassword: string): Promise<void> => {
     await api.post('/auth/reset-password', { token, newPassword });
   },

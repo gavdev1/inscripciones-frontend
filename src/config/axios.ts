@@ -4,7 +4,7 @@ const API_URL = 'https://inscripciones-backend-z2po.onrender.com';
 
 const api = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 60000,
   headers: {
     'Content-Type': 'application/json',
   },
