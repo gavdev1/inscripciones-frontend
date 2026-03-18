@@ -103,7 +103,7 @@ const Reports: React.FC = () => {
         })
       });
 
-      const response = await fetch(`http://localhost:3000/reports/enrollment?${queryParams}`, {
+      const response = await fetch(`https://inscripciones-react.netlify.app/reports/enrollment?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
